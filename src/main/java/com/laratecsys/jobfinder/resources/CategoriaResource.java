@@ -25,5 +25,12 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 		
 	}
-
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> find(Categoria input) {
+		
+		Categoria obj = service.insert(input);
+		return ResponseEntity.ok().body(obj);
+		
+	}
 }

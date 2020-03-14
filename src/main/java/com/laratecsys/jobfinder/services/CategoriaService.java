@@ -19,4 +19,13 @@ public class CategoriaService {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElse(null);
 	}
+	
+	public Categoria insert(Categoria insert) {
+		
+		System.out.println(insert.getNome());
+		
+		Categoria cat = repo.save(insert);
+		return cat;
+		
+	}
 }
