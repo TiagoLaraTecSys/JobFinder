@@ -54,6 +54,9 @@ public class JobfinderApplication implements CommandLineRunner {
 			p4.getCategorias().add(cat1);
 			p5.getCategorias().add(cat2);
 			
+			categoriaRepositorie.saveAll(Arrays.asList(cat1,cat2));
+			produtoRepositories.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+			
 			Estado estado1 = new Estado(null, "Paraná");
 			
 			Cidade c1 = new Cidade(null, "Curitiba", estado1);
@@ -65,8 +68,6 @@ public class JobfinderApplication implements CommandLineRunner {
 			
 			estadoRepo.save((estado1));
 			cidadeRepo.saveAll(Arrays.asList(c1,c2,c3));
-			categoriaRepositorie.saveAll(Arrays.asList(cat1,cat2));
-			produtoRepositories.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 			
 	}
 
