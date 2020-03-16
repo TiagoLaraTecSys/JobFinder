@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.laratecsys.jobfinder.domain.Categoria;
 import com.laratecsys.jobfinder.services.CategoriaService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
@@ -19,18 +21,10 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		
-		Categoria obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
-		
+	public ResponseEntity<?> find(@PathVariable Integer id){
+
+			Categoria obj = service.find(id);
+			return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> find(Categoria input) {
-		
-		Categoria obj = service.insert(input);
-		return ResponseEntity.ok().body(obj);
-		
-	}
 }
