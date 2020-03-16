@@ -1,7 +1,10 @@
 package com.laratecsys.jobfinder.domain;
 
+import javax.persistence.Entity;
+
 import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
 
+@Entity
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 

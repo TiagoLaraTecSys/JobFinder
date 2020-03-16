@@ -1,5 +1,6 @@
 package com.laratecsys.jobfinder;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.laratecsys.jobfinder.domain.Cidade;
 import com.laratecsys.jobfinder.domain.Cliente;
 import com.laratecsys.jobfinder.domain.Endereco;
 import com.laratecsys.jobfinder.domain.Estado;
+import com.laratecsys.jobfinder.domain.Pagamento;
+import com.laratecsys.jobfinder.domain.PagamentoComBoleto;
+import com.laratecsys.jobfinder.domain.PagamentoComCartao;
+import com.laratecsys.jobfinder.domain.Pedido;
 import com.laratecsys.jobfinder.domain.Produto;
+import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
 import com.laratecsys.jobfinder.domain.enums.TipoCliente;
 import com.laratecsys.jobfinder.repositories.CategoriaRepositories;
 import com.laratecsys.jobfinder.repositories.CidadeRepositories;
 import com.laratecsys.jobfinder.repositories.ClienteRepositories;
 import com.laratecsys.jobfinder.repositories.EnderecoRepositories;
 import com.laratecsys.jobfinder.repositories.EstadoRepositories;
+import com.laratecsys.jobfinder.repositories.PagamentoRepositories;
+import com.laratecsys.jobfinder.repositories.PedidoRepositories;
 import com.laratecsys.jobfinder.repositories.ProdutoRepositories;
 
 @SpringBootApplication
@@ -36,6 +44,10 @@ public class JobfinderApplication implements CommandLineRunner {
 	private ClienteRepositories clienteRepo;
 	@Autowired
 	private EnderecoRepositories enderecoRepo;
+	@Autowired
+	private PedidoRepositories pedidoRepo;
+	@Autowired
+	private PagamentoRepositories pagamentoRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JobfinderApplication.class, args);
@@ -83,13 +95,29 @@ public class JobfinderApplication implements CommandLineRunner {
 			cli1.getTelefones().addAll(Arrays.asList("41991021102","4132160318"));
 			
 			Endereco end1 = new Endereco(null, "Sobrado", "33", "D", "Uberaba", "81580120", cli1, c1);
-			Endereco end2 = new Endereco(null, "Sobrado", "33", "D", "Uberaba", "81580120", cli1, c2);
+			Endereco end2 = new Endereco(null, "Sobrado", "33", "D", "Wenceslau", "81010010", cli1, c2);
 			
 			cli1.getEnderecos().addAll(Arrays.asList(end1,end2));
 			
 			clienteRepo.saveAll(Arrays.asList(cli1));
 			
 			enderecoRepo.saveAll(Arrays.asList(end1,end2));
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
+			Pedido ped1 = new Pedido(null, sdf.parse("16/03/2020 12:52"), cli1, end1);
+			
+			Pedido ped2 = new Pedido(null, sdf.parse("17/03/2020 12:52"), cli1, end2);
+			
+			Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 3);
+			ped1.setPagamento(pagto1);
+			
+			Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.QUITADO, ped2, sdf.parse("17/03/2020 12:52"), null);
+			ped2.setPagamento(pagto2);
+			
+			cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
+			
+			pedidoRepo.saveAll(Arrays.asList(ped1,ped2));
+			pagamentoRepo.saveAll(Arrays.asList(pagto1,pagto2));
 			
 			
 	}
