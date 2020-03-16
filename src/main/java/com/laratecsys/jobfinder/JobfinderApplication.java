@@ -13,6 +13,7 @@ import com.laratecsys.jobfinder.domain.Cidade;
 import com.laratecsys.jobfinder.domain.Cliente;
 import com.laratecsys.jobfinder.domain.Endereco;
 import com.laratecsys.jobfinder.domain.Estado;
+import com.laratecsys.jobfinder.domain.ItemPedido;
 import com.laratecsys.jobfinder.domain.Pagamento;
 import com.laratecsys.jobfinder.domain.PagamentoComBoleto;
 import com.laratecsys.jobfinder.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.laratecsys.jobfinder.repositories.CidadeRepositories;
 import com.laratecsys.jobfinder.repositories.ClienteRepositories;
 import com.laratecsys.jobfinder.repositories.EnderecoRepositories;
 import com.laratecsys.jobfinder.repositories.EstadoRepositories;
+import com.laratecsys.jobfinder.repositories.ItemPedidoRepositories;
 import com.laratecsys.jobfinder.repositories.PagamentoRepositories;
 import com.laratecsys.jobfinder.repositories.PedidoRepositories;
 import com.laratecsys.jobfinder.repositories.ProdutoRepositories;
@@ -48,6 +50,8 @@ public class JobfinderApplication implements CommandLineRunner {
 	private PedidoRepositories pedidoRepo;
 	@Autowired
 	private PagamentoRepositories pagamentoRepo;
+	@Autowired
+	private ItemPedidoRepositories itemPedidoRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JobfinderApplication.class, args);
@@ -119,7 +123,17 @@ public class JobfinderApplication implements CommandLineRunner {
 			pedidoRepo.saveAll(Arrays.asList(ped1,ped2));
 			pagamentoRepo.saveAll(Arrays.asList(pagto1,pagto2));
 			
+			ItemPedido ip1 = new ItemPedido(ped1, p1, 0.0, 3, 45.0);
+			ItemPedido ip2 = new ItemPedido(ped1, p2, 0.0, 3, 45.0);
+			ItemPedido ip3 = new ItemPedido(ped1, p3, 0.0, 3, 45.0);
 			
+			ped1.getItens().addAll(Arrays.asList(ip1,ip2,ip3));
+			
+			p1.getItens().add(ip1);
+			p2.getItens().add(ip2);
+			p3.getItens().add(ip3);
+			
+			itemPedidoRepo.saveAll(Arrays.asList(ip1,ip2,ip3));
 	}
 
 }
