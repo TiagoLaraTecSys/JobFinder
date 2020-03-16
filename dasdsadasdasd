@@ -1,0 +1,41 @@
+[33mcommit 97a2f795035d12e5ca459f0cac994ed6fe0d5e7b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Mon Mar 16 01:05:20 2020 -0300
+
+    Implementação das classe cliente e endereço e Enum de tipo de cliente controlado por metodos staticos.
+
+[33mcommit 3aec5be20ad8d22635593578d2728beba263f861[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Mon Mar 16 00:25:04 2020 -0300
+
+    Implementação dos domínios: Cidade e Estado.
+
+[33mcommit d5b783aa7c652163e846adfb90f56d389fdb86e7[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Sun Mar 15 23:59:52 2020 -0300
+
+    Tratamento de exception e proteção de referencia ciclica com Notação Json, criação de classes para lançamento da exceção em resources e services
+
+[33mcommit 1d222739b70e9f14504fd84664f1bfa69c8a1010[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Sat Mar 14 01:50:39 2020 -0300
+
+    Criação do produto domain, repositories, Resources, instanciacao
+
+[33mcommit 3cc12172c5527138bb64b85e5f2daddf754056c0[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Fri Mar 13 23:25:16 2020 -0300
+
+    tentativa de insert de categoria usando POST
+
+[33mcommit d986016ccd7f89a9ffaa753e08faa391ea7e30b4[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Fri Mar 13 23:00:45 2020 -0300
+
+    Inserindo inicialização de dados no domínio Categoria
+
+[33mcommit 3ba3d56a1aff9e287dbd8a53305c279ba606e3c2[m
+Author: Tiago Ribeiro <laratecsys@gmail.com>
+Date:   Wed Mar 11 01:47:57 2020 -0300
+
+    Primeiro commit com domain, repository, servicos, recursos de Categoria

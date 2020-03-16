@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.laratecsys.jobfinder.domain.Categoria;
 import com.laratecsys.jobfinder.domain.Cidade;
+import com.laratecsys.jobfinder.domain.Cliente;
+import com.laratecsys.jobfinder.domain.Endereco;
 import com.laratecsys.jobfinder.domain.Estado;
 import com.laratecsys.jobfinder.domain.Produto;
+import com.laratecsys.jobfinder.domain.enums.TipoCliente;
 import com.laratecsys.jobfinder.repositories.CategoriaRepositories;
 import com.laratecsys.jobfinder.repositories.CidadeRepositories;
+import com.laratecsys.jobfinder.repositories.ClienteRepositories;
+import com.laratecsys.jobfinder.repositories.EnderecoRepositories;
 import com.laratecsys.jobfinder.repositories.EstadoRepositories;
 import com.laratecsys.jobfinder.repositories.ProdutoRepositories;
 
@@ -27,6 +32,10 @@ public class JobfinderApplication implements CommandLineRunner {
 	private EstadoRepositories estadoRepo;
 	@Autowired
 	private CidadeRepositories cidadeRepo;
+	@Autowired
+	private ClienteRepositories clienteRepo;
+	@Autowired
+	private EnderecoRepositories enderecoRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JobfinderApplication.class, args);
@@ -68,6 +77,20 @@ public class JobfinderApplication implements CommandLineRunner {
 			
 			estadoRepo.save((estado1));
 			cidadeRepo.saveAll(Arrays.asList(c1,c2,c3));
+			
+			Cliente cli1 = new Cliente(null,"Tiago Ribeiro", "laratecsys@gmail.com","07406192924", TipoCliente.PESSOA_FISICA);
+			
+			cli1.getTelefones().addAll(Arrays.asList("41991021102","4132160318"));
+			
+			Endereco end1 = new Endereco(null, "Sobrado", "33", "D", "Uberaba", "81580120", cli1, c1);
+			Endereco end2 = new Endereco(null, "Sobrado", "33", "D", "Uberaba", "81580120", cli1, c2);
+			
+			cli1.getEnderecos().addAll(Arrays.asList(end1,end2));
+			
+			clienteRepo.saveAll(Arrays.asList(cli1));
+			
+			enderecoRepo.saveAll(Arrays.asList(end1,end2));
+			
 			
 	}
 
