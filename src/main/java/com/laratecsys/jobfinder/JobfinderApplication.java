@@ -63,7 +63,13 @@ public class JobfinderApplication implements CommandLineRunner {
 		
 			Categoria cat1 = new Categoria(null,"Cocada");
 			Categoria cat2 = new Categoria(null,"Gelatina");
-		
+			Categoria cat3 = new Categoria(null,"Biroba");
+			Categoria cat4 = new Categoria(null,"Biriba");
+			Categoria cat5 = new Categoria(null,"Servicos");
+			Categoria cat6 = new Categoria(null,"Curto Prazo");
+			Categoria cat7 = new Categoria(null,"Médio Prazo");
+			Categoria cat8 = new Categoria(null,"Garçonete");
+			
 			Produto p1 = new Produto(null, "Cocada Preta", 2.50);
 			Produto p2 = new Produto(null, "Cocada Branca", 2.50);
 			Produto p3 = new Produto(null, "Cocada Maracujá", 2.50);
@@ -79,7 +85,7 @@ public class JobfinderApplication implements CommandLineRunner {
 			p4.getCategorias().add(cat1);
 			p5.getCategorias().add(cat2);
 			
-			categoriaRepositorie.saveAll(Arrays.asList(cat1,cat2));
+			categoriaRepositorie.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8));
 			produtoRepositories.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 			
 			Estado estado1 = new Estado(null, "Paraná");
