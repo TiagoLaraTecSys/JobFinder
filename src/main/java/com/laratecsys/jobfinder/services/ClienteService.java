@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.laratecsys.jobfinder.domain.Categoria;
 import com.laratecsys.jobfinder.domain.Cliente;
 import com.laratecsys.jobfinder.dto.ClienteDTO;
 import com.laratecsys.jobfinder.repositories.ClienteRepositories;
