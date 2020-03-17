@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.laratecsys.jobfinder.domain.Categoria;
+import com.laratecsys.jobfinder.dto.CategoriaDTO;
 import com.laratecsys.jobfinder.repositories.CategoriaRepositories;
 import com.laratecsys.jobfinder.services.exceptions.DataIntegrityException7;
 import com.laratecsys.jobfinder.services.exceptions.ObjectNotFoundException;
@@ -21,6 +22,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepositories repo;
 
+	
 	public Categoria find(Integer id){
 		
 		Optional<Categoria> obj = repo.findById(id);
@@ -58,5 +60,10 @@ public class CategoriaService {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO obj) {
+		
+		return new Categoria(obj.getId(), obj.getNome());
 	}
 }

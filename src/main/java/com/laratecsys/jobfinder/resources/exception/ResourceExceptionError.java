@@ -1,12 +1,11 @@
 package com.laratecsys.jobfinder.resources.exception;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpServerErrorException;
 
 import com.laratecsys.jobfinder.services.exceptions.DataIntegrityException7;
 import com.laratecsys.jobfinder.services.exceptions.ObjectNotFoundException;

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.laratecsys.jobfinder.domain.Pedido;
 import com.laratecsys.jobfinder.services.PedidoService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoResource {
