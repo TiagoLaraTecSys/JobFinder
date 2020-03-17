@@ -32,7 +32,6 @@ public class CategoriaResource {
 	public ResponseEntity<Void> insert(@RequestBody Categoria categoria){
 		
 		categoria = service.insert(categoria);
-		
 		// Retorna a URL com o id Criado
 		URI uri =  ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(categoria.getId()).toUri();
@@ -47,5 +46,12 @@ public class CategoriaResource {
 		obj = service.update(obj);
 		
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Categoria> delete(@PathVariable Integer id){
+
+			service.delete(id);
+			return ResponseEntity.noContent().build();
 	}
 }

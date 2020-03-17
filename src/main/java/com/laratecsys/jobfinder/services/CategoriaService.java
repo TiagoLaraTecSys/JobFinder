@@ -3,11 +3,12 @@ package com.laratecsys.jobfinder.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.laratecsys.jobfinder.domain.Categoria;
 import com.laratecsys.jobfinder.repositories.CategoriaRepositories;
-
+import com.laratecsys.jobfinder.services.exceptions.DataIntegrityException7;
 import com.laratecsys.jobfinder.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -33,5 +34,14 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException7("Não é possível deletar categoria que possui produtos");
+		}
 	}
 }
