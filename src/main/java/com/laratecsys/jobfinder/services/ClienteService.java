@@ -75,7 +75,7 @@ public class ClienteService {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
 
-			throw new DataIntegrityException7("Não é possível deletar Usuário que possui relações em outras tabelas");
+			throw new DataIntegrityException7("Não é possível deletar Cliente por que há pedidos relacionados");
 		}
 
 	}
