@@ -70,14 +70,22 @@ public class JobfinderApplication implements CommandLineRunner {
 			Categoria cat7 = new Categoria(null,"Médio Prazo");
 			Categoria cat8 = new Categoria(null,"Garçonete");
 			
-			Produto p1 = new Produto(null, "Cocada Preta", 2.50);
-			Produto p2 = new Produto(null, "Cocada Branca", 2.50);
-			Produto p3 = new Produto(null, "Cocada Maracujá", 2.50);
-			Produto p4 = new Produto(null, "Cocada Mesclada", 2.50);
-			Produto p5 = new Produto(null, "Gelatina Morango", 1.0);
+			Produto p1 = new Produto(null, "Programação", 2.50);
+			Produto p2 = new Produto(null, "Instalação", 2.50);
+			Produto p3 = new Produto(null, "Manutenção", 2.50);
+			Produto p4 = new Produto(null, "Garçom", 2.50);
+			Produto p5 = new Produto(null, "Cozinha", 1.0);
+			Produto p6 = new Produto(null, "Caixa", 2.50);
+			Produto p7 = new Produto(null, "Cocada Branca", 2.50);
+			Produto p8 = new Produto(null, "Cocada Maracujá", 2.50);
+			Produto p9 = new Produto(null, "Cocada Mesclada", 2.50);
+			Produto p10 = new Produto(null, "Gelatina Morango", 1.0);
 			
 			cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4));
 			cat2.getProdutos().addAll(Arrays.asList(p5));
+			cat5.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4,p5));
+			cat6.getProdutos().addAll(Arrays.asList(p1,p2));
+			cat7.getProdutos().addAll(Arrays.asList(p3,p4,p5));
 			
 			p1.getCategorias().add(cat1);
 			p2.getCategorias().add(cat1);
