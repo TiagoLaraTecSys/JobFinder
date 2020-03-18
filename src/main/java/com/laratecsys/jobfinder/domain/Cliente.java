@@ -130,6 +130,12 @@ public class Cliente implements Serializable{
 		this.pedidos = pedidos;
 	}
 	
+	
+
+	@Override
+	public String toString() {
+		return "Cliente [enderecos=" + enderecos + "]";
+	}
 
 	@Override
 	public int hashCode() {
