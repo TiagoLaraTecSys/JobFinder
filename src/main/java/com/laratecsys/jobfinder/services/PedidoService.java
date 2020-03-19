@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import com.laratecsys.jobfinder.domain.ItemPedido;
 import com.laratecsys.jobfinder.domain.PagamentoComBoleto;
 import com.laratecsys.jobfinder.domain.Pedido;
-import com.laratecsys.jobfinder.domain.Produto;
 import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
-import com.laratecsys.jobfinder.repositories.ClienteRepositories;
 import com.laratecsys.jobfinder.repositories.ItemPedidoRepositories;
 import com.laratecsys.jobfinder.repositories.PagamentoRepositories;
 import com.laratecsys.jobfinder.repositories.PedidoRepositories;
@@ -37,6 +35,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public Pedido find(Integer id){
 		
@@ -77,7 +78,7 @@ public class PedidoService {
 		}
 
 		itemPedidoRepositories.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	
 		
