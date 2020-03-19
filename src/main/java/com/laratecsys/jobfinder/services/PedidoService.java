@@ -65,7 +65,7 @@ public class PedidoService {
 
 			ip.setDesconto(0.0);
 
-			ip.setPreco(produtoService.find(1).getPreco());
+			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
 			
 			ip.setPedido(obj);
 
