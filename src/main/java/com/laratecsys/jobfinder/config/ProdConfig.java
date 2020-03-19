@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.laratecsys.jobfinder.services.DBService;
+import com.laratecsys.jobfinder.services.EmailService;
+import com.laratecsys.jobfinder.services.SmtpEmailService;
 
 @Configuration
-@Profile("dev")
+@Profile("prod")
 public class ProdConfig {
 
 	@Autowired
@@ -32,5 +34,10 @@ public class ProdConfig {
 		}
 
 		
+	}
+	
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
 }
