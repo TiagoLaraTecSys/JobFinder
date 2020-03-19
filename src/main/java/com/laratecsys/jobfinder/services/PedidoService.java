@@ -11,6 +11,7 @@ import com.laratecsys.jobfinder.domain.PagamentoComBoleto;
 import com.laratecsys.jobfinder.domain.Pedido;
 import com.laratecsys.jobfinder.domain.Produto;
 import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
+import com.laratecsys.jobfinder.repositories.ClienteRepositories;
 import com.laratecsys.jobfinder.repositories.ItemPedidoRepositories;
 import com.laratecsys.jobfinder.repositories.PagamentoRepositories;
 import com.laratecsys.jobfinder.repositories.PedidoRepositories;
@@ -34,6 +35,9 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepositories itemPedidoRepositories;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
 	public Pedido find(Integer id){
 		
 		Optional<Pedido> obj = repo.findById(id);
@@ -45,6 +49,7 @@ public class PedidoService {
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstantDate(new Date());
+		obj.setCliente(clienteService.find(obj.getCliente().getId()));
 		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		obj.getPagamento().setPedido(obj);
 		obj.setEnderecoEntrega(obj.getEnderecoEntrega());
@@ -66,13 +71,13 @@ public class PedidoService {
 			ip.setDesconto(0.0);
 
 			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
-			
+			ip.setProduto(produtoService.find(ip.getProduto().getId())); 
 			ip.setPedido(obj);
 
 		}
 
 		itemPedidoRepositories.saveAll(obj.getItens());
-
+		System.out.println(obj);
 		return obj;
 	
 		

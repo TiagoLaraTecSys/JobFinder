@@ -1,8 +1,11 @@
 package com.laratecsys.jobfinder.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -145,6 +148,31 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
+		SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido Numero: ");
+		builder.append(getId());
+		builder.append("Data do pedido: ");
+		builder.append(sd.format(getInstantDate()));
+		builder.append(", cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do Pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes: \n");
+		
+		for (ItemPedido itemPedido : getItens()) {
+			builder.append(itemPedido.toString());
+			
+		}
+		
+		builder.append("\nValor Total: R$ ");
+		builder.append(nf.format(getValorTotal()));
+		
+		return builder.toString();
 	}
 
 
