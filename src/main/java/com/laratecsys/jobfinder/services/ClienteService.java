@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.laratecsys.jobfinder.domain.Cidade;
@@ -31,6 +32,9 @@ public class ClienteService {
 	
 	@Autowired
 	private EnderecoRepositories enderecoRepo;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	public Cliente find(Integer id) {
 
@@ -82,14 +86,14 @@ public class ClienteService {
 
 	public Cliente fromDTO(ClienteDTO objDTO) {
 
-		return new Cliente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null);
+		return new Cliente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null,null);
 
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDTO) {
 
 		Cliente newCli = new Cliente(null, objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(), 
-				TipoCliente.toEnum(objDTO.getTipo()));
+				TipoCliente.toEnum(objDTO.getTipo()), pe.encode(objDTO.getSenha()));
 
 		Cidade newCidade = new Cidade(objDTO.getCidadeId(),null,null);
 		//System.out.println("Id da Cidade: " + objDTO.getCidadeId());

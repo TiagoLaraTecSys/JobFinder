@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.laratecsys.jobfinder.services.validation.ClienteInsert;
 
 @ClienteInsert
@@ -43,6 +44,10 @@ public class ClienteNewDTO implements Serializable{
 	
 	private Integer CidadeId;
 	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	private String senha;
+	
+
 	public ClienteNewDTO() {
 		
 	}
@@ -141,6 +146,14 @@ public class ClienteNewDTO implements Serializable{
 
 	public void setCidadeId(Integer cidadeId) {
 		CidadeId = cidadeId;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public static long getSerialversionuid() {
