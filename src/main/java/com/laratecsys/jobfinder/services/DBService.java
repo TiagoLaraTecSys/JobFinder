@@ -20,6 +20,7 @@ import com.laratecsys.jobfinder.domain.PagamentoComCartao;
 import com.laratecsys.jobfinder.domain.Pedido;
 import com.laratecsys.jobfinder.domain.Produto;
 import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
+import com.laratecsys.jobfinder.domain.enums.Perfil;
 import com.laratecsys.jobfinder.domain.enums.TipoCliente;
 import com.laratecsys.jobfinder.repositories.CategoriaRepositories;
 import com.laratecsys.jobfinder.repositories.CidadeRepositories;
@@ -76,7 +77,7 @@ public class DBService {
 	Produto p9 = new Produto(null, "Cocada Mesclada", 2.50);
 	Produto p10 = new Produto(null, "Gelatina Morango", 1.0);
 	
-	cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4));
+	cat1.getProdutos().addAll(Arrays.asList(p6,p7,p8,p9));
 	cat2.getProdutos().addAll(Arrays.asList(p5));
 	cat5.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4,p5));
 	cat6.getProdutos().addAll(Arrays.asList(p1,p2));
@@ -104,17 +105,22 @@ public class DBService {
 	cidadeRepo.saveAll(Arrays.asList(c1,c2,c3));
 	
 	Cliente cli1 = new Cliente(null,"Tiago Ribeiro", "laratecsys@gmail.com","07406192924", TipoCliente.PESSOA_FISICA, pe.encode("1234"));
+	Cliente cli2 = new Cliente(null,"Andrea Quadros de Lara", "andreaQlr@gmail.com","07406192924", TipoCliente.PESSOA_FISICA, pe.encode("1234"));
+	cli2.addPerfil(Perfil.ADMIN);
 	
 	cli1.getTelefones().addAll(Arrays.asList("41991021102","4132160318"));
+	cli1.getTelefones().addAll(Arrays.asList("41992224242","41991021102"));
 	
 	Endereco end1 = new Endereco(null, "Sobrado", "33", "D", "Uberaba", "81580120", cli1, c1);
 	Endereco end2 = new Endereco(null, "Sobrado", "33", "D", "Wenceslau", "81010010", cli1, c2);
+	Endereco end3 = new Endereco(null, "Ap", "102", "", "Uberaba", "81010010", cli2, c2);
 	
 	cli1.getEnderecos().addAll(Arrays.asList(end1,end2));
+	cli2.getEnderecos().addAll(Arrays.asList(end3));
 	
-	clienteRepo.saveAll(Arrays.asList(cli1));
+	clienteRepo.saveAll(Arrays.asList(cli1,cli2));
 	
-	enderecoRepo.saveAll(Arrays.asList(end1,end2));
+	enderecoRepo.saveAll(Arrays.asList(end1,end2, end3));
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
 	Pedido ped1 = new Pedido(null, sdf.parse("16/03/2020 12:52"), cli1, end1);
