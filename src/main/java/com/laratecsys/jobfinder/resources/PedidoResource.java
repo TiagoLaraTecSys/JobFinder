@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.laratecsys.jobfinder.domain.Pedido;
-import com.laratecsys.jobfinder.domain.Pedido;
 import com.laratecsys.jobfinder.services.PedidoService;
 
 @RestController
