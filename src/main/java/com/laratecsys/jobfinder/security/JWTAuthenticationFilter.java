@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.mail.internet.ContentType;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.laratecsys.jobfinder.dto.CredenciaisDTO;
+import com.mysql.cj.x.protobuf.MysqlxResultset.ContentType_BYTES;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
@@ -59,10 +61,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	@Override
 	public void successfulAuthentication(HttpServletRequest req,
-			HttpServletResponse res, FilterChain chain, Authentication auth) throws AuthenticationException  {
+			HttpServletResponse res, FilterChain chain, Authentication auth) throws AuthenticationException, IOException  {
 		
 		String userName = ((UserSS) auth.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToke(userName);
+		res.setStatus(201);
+		res.setContentType("application/json");
+		res.getWriter().append("{\"authToken\": \"Bearer " + token + "\"}");
 		res.addHeader("Authorization", "Bearer " + token);
 		
 		

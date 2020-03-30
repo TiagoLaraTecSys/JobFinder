@@ -3,6 +3,7 @@ package com.laratecsys.jobfinder.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.security.sasl.AuthenticationException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,14 @@ import org.springframework.stereotype.Service;
 import com.laratecsys.jobfinder.domain.Cidade;
 import com.laratecsys.jobfinder.domain.Cliente;
 import com.laratecsys.jobfinder.domain.Endereco;
+import com.laratecsys.jobfinder.domain.enums.Perfil;
 import com.laratecsys.jobfinder.domain.enums.TipoCliente;
 import com.laratecsys.jobfinder.dto.ClienteDTO;
 import com.laratecsys.jobfinder.dto.ClienteNewDTO;
 import com.laratecsys.jobfinder.repositories.ClienteRepositories;
 import com.laratecsys.jobfinder.repositories.EnderecoRepositories;
+import com.laratecsys.jobfinder.security.UserSS;
+import com.laratecsys.jobfinder.services.exceptions.AuthorizationException;
 import com.laratecsys.jobfinder.services.exceptions.DataIntegrityException7;
 import com.laratecsys.jobfinder.services.exceptions.ObjectNotFoundException;
 
@@ -36,8 +40,15 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 
-	public Cliente find(Integer id) {
+	public Cliente find(Integer id){
 
+		UserSS userLoged = UserService.authenticated();
+		
+		if ((userLoged==null || !userLoged.hasHole(Perfil.ADMIN)) && !userLoged.getId().equals(id)) {
+			throw new AuthorizationException("Usuário não autorizado");
+		}
+		
+		
 		Optional<Cliente> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(

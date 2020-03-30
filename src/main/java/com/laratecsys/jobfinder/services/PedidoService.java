@@ -3,6 +3,8 @@ package com.laratecsys.jobfinder.services;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.security.sasl.AuthenticationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class PedidoService {
 				"Objeto não encontrador. ID:" + id +", Tipo:" + Pedido.class.getName()) );
 	}
 	
-	public Pedido insert(Pedido obj) {
+	public Pedido insert(Pedido obj){
 		obj.setId(null);
 		obj.setInstantDate(new Date());
 		obj.setCliente(clienteService.find(obj.getCliente().getId()));
