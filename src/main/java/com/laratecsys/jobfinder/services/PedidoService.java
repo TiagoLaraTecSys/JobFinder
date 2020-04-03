@@ -13,7 +13,6 @@ import com.laratecsys.jobfinder.domain.Cliente;
 import com.laratecsys.jobfinder.domain.ItemPedido;
 import com.laratecsys.jobfinder.domain.PagamentoComBoleto;
 import com.laratecsys.jobfinder.domain.Pedido;
-import com.laratecsys.jobfinder.domain.Produto;
 import com.laratecsys.jobfinder.domain.enums.EstadoPagamento;
 import com.laratecsys.jobfinder.domain.enums.Perfil;
 import com.laratecsys.jobfinder.repositories.ClienteRepositories;

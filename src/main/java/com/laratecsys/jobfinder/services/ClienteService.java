@@ -3,7 +3,6 @@ package com.laratecsys.jobfinder.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.security.sasl.AuthenticationException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;

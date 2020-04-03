@@ -40,7 +40,6 @@ public class ClienteResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO){
 		Cliente obj = service.fromDTO(objDTO);
-		System.out.println(obj.toString());
 		obj = service.insert(obj);
 		// Retorna a URL com o id Criado
 		URI uri =  ServletUriComponentsBuilder.fromCurrentRequest()
