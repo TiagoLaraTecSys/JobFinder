@@ -9,6 +9,8 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import com.laratecsys.jobfinder.domain.Cliente;
+
 public class SmtpEmailService extends AbstractEmailService {
 
 	
@@ -35,5 +37,6 @@ public class SmtpEmailService extends AbstractEmailService {
 		LOG.info("Email enviado!");
 		
 	}
+
 
 }

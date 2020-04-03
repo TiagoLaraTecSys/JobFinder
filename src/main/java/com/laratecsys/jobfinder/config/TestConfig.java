@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.laratecsys.jobfinder.services.DBService;
 import com.laratecsys.jobfinder.services.EmailService;
-import com.laratecsys.jobfinder.services.MockMailService;
+import com.laratecsys.jobfinder.services.SmtpEmailService;
 
 @Configuration
 @Profile("test")
@@ -27,6 +27,6 @@ public class TestConfig {
 	
 	@Bean
 	public EmailService emailService() {
-		return new MockMailService();
+		return new SmtpEmailService();
 	}
 }
