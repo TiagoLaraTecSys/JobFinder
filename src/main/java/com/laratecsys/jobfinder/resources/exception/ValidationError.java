@@ -22,6 +22,7 @@ public class ValidationError extends StandardError{
 		listError.add(new FieldMessage(fieldName, message, tentativa));
 	}
 
-
+	
+	
 	
 }
