@@ -62,6 +62,22 @@ public class ClienteService {
 		enderecoRepo.saveAll(obj.getEnderecos());
 		return obj;
 	}
+	
+	public Cliente findByEmail(String email) {
+		
+		UserSS userSS = UserService.authenticated();
+		if (userSS==null || !userSS.hasHole(Perfil.ADMIN) && !email.equals(userSS.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		Cliente obj = repo.findByEmail(email);
+		
+		if (obj==null) {
+			throw new ObjectNotFoundException("Objeto não encontrado, email: " +email);
+		}
+		
+		return obj;
+	}
 
 	public Cliente update(Cliente obj) {
 
